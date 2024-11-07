@@ -1,0 +1,33 @@
+\documentclass{book}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{Poem Anthology}
+
+\begin{document}
+\title{Poem Anthology}
+\author{Your Name}
+\maketitle
+\tableofcontents
+
+{% for poem_name, data in poems.items() %}
+\chapter{ {{ poem_name }} }
+
+{{ data.content | safe }}
+
+{% for image in data.images %}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{ {{ image }} }
+    \caption{Image for {{ poem_name }}}
+\end{figure}
+{% endfor %}
+
+\newpage
+{% endfor %}
+\end{document}
